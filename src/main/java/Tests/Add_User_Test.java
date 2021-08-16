@@ -1,6 +1,7 @@
 package Tests;
 
 import Helpers.Report_Class;
+import Helpers.Screenshot_Class;
 import Pages.Add_User_Class;
 import Setup.Setup_Class;
 import com.aventstack.extentreports.Status;
@@ -8,6 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
@@ -20,7 +22,7 @@ public class Add_User_Test extends Report_Class {
 
     private WebDriver driver = Setup_Class.startBrowserofChoice("http://www.way2automation.com/angularjs-protractor/webtables/", "chrome");
     Add_User_Class add_user = PageFactory.initElements(driver, Add_User_Class.class);
-
+    Screenshot_Class screenshot = new Screenshot_Class();
     //Read data from Excel file
     private static final String excel = ".\\src\\main\\java\\Test_Data\\Add_User_Data.xlsx";
     FileInputStream fis = new FileInputStream(excel);
@@ -39,6 +41,7 @@ public class Add_User_Test extends Report_Class {
     public Add_User_Test() throws IOException{
 
     }
+
 
     @Test (priority = 1)
     public void Add_User_Test() throws Exception{
@@ -62,11 +65,20 @@ public class Add_User_Test extends Report_Class {
         test.log(Status.PASS, "Enter Mobile");
         add_user.moBile(Mobile);
         test.log(Status.PASS, "Click the Save Button");
+
+        screenshot.takeSnapShot(driver, "Add user details");
         add_user.Click_Save_Button();
 
-
+        screenshot.takeSnapShot(driver, "User Added");
 
     }
+
+    //This is to close the Browser
+    @AfterSuite
+    public void Quit()
+    {
+       driver.quit();
+   }
 
 
 

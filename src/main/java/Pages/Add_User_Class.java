@@ -4,10 +4,13 @@ import com.sun.jdi.Value;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.Random;
 
 public class Add_User_Class {
 
@@ -18,6 +21,15 @@ public class Add_User_Class {
     public Add_User_Class(WebDriver driver)
     {
      this.driver=driver;
+    }
+
+    public static void main(String[] args){
+
+        System.setProperty("webdriver.chrome.driver", "Dependencies//chromedriver");
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://www.way2automation.com/angularjs-protractor/webtables/");
+        WebElement RadioBtn1 = driver.findElement(By.xpath("//input[contains(@value,'15')]"));
+        RadioBtn1.click();
     }
 
     //We Locating all the Elements on the Add User page
@@ -37,10 +49,11 @@ public class Add_User_Class {
     WebElement Password;
 
     @FindBy(xpath = "//input[contains(@value,'15')]")
-    WebElement Radio_Company_AAA = driver.findElement(By.id("15"));
+    WebElement Radio_Company_AAA;
+
 
     @FindBy(xpath = "//input[contains(@value,'16')]")
-    WebElement Radio_Company_BBB = driver.findElement(By.id("16"));
+    WebElement Radio_Company_BBB;
 
     @FindBy(xpath = "//select[contains(@name,'RoleId')]")
     WebElement Role;
@@ -64,32 +77,39 @@ public class Add_User_Class {
     }
 
     //We creating a method to enter the First Name
-    public void FirstName(String firstName)
-    {
+    public void FirstName(String firstName) throws InterruptedException {
+        Thread.sleep(3000);
         First_Name.sendKeys(firstName);
     }
 
     //We creating a method to enter the Last Name
-    public void LastName(String lastName)
-    {
+    public void LastName(String lastName) throws InterruptedException {
+        Thread.sleep(3000);
         Last_Name.sendKeys(lastName);
     }
 
     //We creating a method to enter the UserName
-    public void UserName(String userName)
+    public void UserName(String userName) throws InterruptedException
     {
-        User_Name.sendKeys(userName);
+        Thread.sleep(3000);
+        User_Name.click();
+        Random randomGenerator = new Random();
+        int randomInt = randomGenerator.nextInt(1000);
+        User_Name.sendKeys(userName + randomInt);
+
     }
 
     //We creating a method to enter the Password
-    public void PassWord(String password)
+    public void PassWord(String password) throws InterruptedException
     {
+        Thread.sleep(3000);
         Password.sendKeys(password);
     }
 
-    public void Radio_Button1(String radioButton1)
+    public void Radio_Button1(String radioButton1) throws InterruptedException
     {
-        Radio_Company_AAA.click();
+        Thread.sleep(3000);
+        Radio_Company_BBB.click();
     }
 
     public void Radio_Button2(String radioButton2)
@@ -97,20 +117,26 @@ public class Add_User_Class {
         Radio_Company_BBB.click();
     }
 
-    public void RoLe(String role)
+    public void RoLe(String role) throws InterruptedException
     {
+        Thread.sleep(3000);
         Role.sendKeys(role);
         //Select _roleDrp=new Select(Role);
         //_roleDrp.selectByVisibleText(role);
     }
 
-    public void eMail(String email)
+    public void eMail(String email) throws InterruptedException
     {
-        Email.sendKeys(email);
+        Thread.sleep(3000);
+        Email.click();
+        Random randomGenerator = new Random();
+        int randomInt = randomGenerator.nextInt(1000);
+        Email.sendKeys("test" + randomInt + "@test.com");
     }
 
-    public void moBile(String mobile)
+    public void moBile(String mobile) throws InterruptedException
     {
+        Thread.sleep(3000);
         Mobile_Number.sendKeys(mobile);
     }
 

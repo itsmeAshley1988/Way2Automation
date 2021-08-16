@@ -22,9 +22,9 @@ public class Report_Class {
     @BeforeSuite
     public void reportSetup()
     {
-       htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir")+"/Way2Automation_Project/Way2Automate_Report.html");
+       htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir")+"/Way2Automate Report/Way2Automate_Report.html");
        htmlReporter.config().setDocumentTitle("Execution Report");
-       htmlReporter.config().setReportName("Way to Automate Report");
+       htmlReporter.config().setReportName("Add User Test Report");
        htmlReporter.config().setTheme(Theme.STANDARD);
        extent = new ExtentReports();
        extent.attachReporter(htmlReporter);
