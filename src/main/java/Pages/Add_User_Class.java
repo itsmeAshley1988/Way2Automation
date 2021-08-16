@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.util.Random;
 
@@ -66,6 +67,9 @@ public class Add_User_Class {
 
     @FindBy(xpath = "//button[@ng-click='save(user)'][contains(.,'Save')]")
     WebElement Save_Button;
+
+    @FindBy(xpath = "//td[@ng-repeat='column in columns'][contains(.,'@test.com')]")
+    WebElement User_Verification;
 
     //We create a method to click on the Add User button
     public void Click_Add_User_Button()
@@ -143,6 +147,13 @@ public class Add_User_Class {
     public void Click_Save_Button()
     {
         Save_Button.click();
+    }
+
+    public void Verify_User_added()
+    {
+
+        Assert.assertTrue(User_Verification.isDisplayed());
+
     }
 
 

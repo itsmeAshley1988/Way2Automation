@@ -69,7 +69,10 @@ public class Add_User_Test extends Report_Class {
         screenshot.takeSnapShot(driver, "Add user details");
         add_user.Click_Save_Button();
 
+        test.log(Status.PASS, "Very user added successfully");
+
         screenshot.takeSnapShot(driver, "User Added");
+        add_user.Verify_User_added();
 
     }
 
